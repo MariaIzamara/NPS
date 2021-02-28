@@ -1,15 +1,19 @@
 import { Router } from 'express';
-import { SurveysController } from './controllers/SurveyController';
-import { UserController } from './controllers/UserController';
+import { SendMailController } from './controllers/SendMailController';
+import { SurveysController } from './controllers/SurveysController';
+import { UsersController } from './controllers/UsersController';
 
 const router = Router();
 
-const userController = new UserController();
+const userController = new UsersController();
 const surveyController = new SurveysController();
+const sendMailController = new SendMailController();
 
 router.post("/users", userController.create);
 
 router.post("/surveys", surveyController.create);
 router.get("/surveys", surveyController.show);
+
+router.post("/sendMail", sendMailController.execute);
 
 export { router };
